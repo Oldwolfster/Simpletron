@@ -1,0 +1,13 @@
+### Test Data Below
+simplest_data = [(1, 1), (0, 0), (1, 1), (0, 0), (0, 1)]                # This data isn't exciting but makes it easy to get it working.
+
+
+### Simpletron Neural Network
+weight = .2                                                             # Initial value of weight.
+for epoch in range(5):                                                  # Run 5 Epochs (Full set of training data)
+    for iteration, (credit_score, result) in enumerate(simplest_data):  # Loop through each set of training data
+        prediction = 1 if credit_score * weight >= 0.5 else 0           # 1) Guess    - Make a Prediction
+        loss = result - prediction                                      # 2) Check    - CCalculate Loss - How far is our guess from actual outcome..
+        weight += loss * .1                                             # 3) Tweak    - Adjust weight by loss times Learning Rate - NOT GRADIENT DESCENT!
+
+        print(f"epoch: {epoch+1} iteration: {iteration}\tcredit score: {credit_score:2}\tresult: {result}\tprediction: {prediction}\tloss: {loss:.2f}\tweight: {weight:.2f}\tresult: {'CORRECT' if loss == 0 else 'WRONG'}")
